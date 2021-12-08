@@ -12,8 +12,10 @@ import React from 'react';
 import { ReactNativeKeycloakProvider } from '@react-keycloak/native';
 import keycloak from './keycloak';
 import Login from './Login';
+import Notifications from './notifications';
 
 import {
+  Button,
   SafeAreaView,
   ScrollView,
   StatusBar,
@@ -80,6 +82,16 @@ const App = () => {
         <ScrollView contentInsetAdjustmentBehavior="automatic" style={backgroundStyle}>
           <Header />
           <Login />
+          <View style={styles.container}>
+            {/* <DatePicker date={date} onDateChange={setDate} /> */}
+            <View style={styles.wrapper} />
+            <Button
+              title="Notification nach Klick"
+              onPress={() => {
+                Notifications.fireNotification('Notification nach Klick', 'Du hast geklickt!');
+              }}
+            />
+          </View>
           <View
             style={{
               backgroundColor: isDarkMode ? Colors.black : Colors.white,
@@ -120,6 +132,14 @@ const styles = StyleSheet.create({
   },
   highlight: {
     fontWeight: '700',
+  },
+  container: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  wrapper: {
+    height: 60,
   },
 });
 
